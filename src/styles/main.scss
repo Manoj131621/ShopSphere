@@ -11,3 +11,19 @@ body {
     gap: 1.5rem;
     padding:1rem;
 }
+.product-details{
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    img {
+        max-width: 300px;
+        object-fit: contain;
+    }
+    @media (max-width: 768px){
+        flex-direction: column;
+        align-items: center;
+    }
+}
