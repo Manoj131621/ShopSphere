@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux"
+
 function Home() {
+    const products = useSelector((state) => state.products.items)
     return(
         <>
-        <h1>ShopSphere Home</h1>
+        <h1>Products Count: {products.length}</h1>
         </>
     )
 }
