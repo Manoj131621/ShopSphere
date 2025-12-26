@@ -1,0 +1,19 @@
+.product-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+
+
+&:hover{
+    transform: scale(1.03);
+}
+
+&__image{
+    height: 200px;
+    object-fit: contain;
+}
+
+}
