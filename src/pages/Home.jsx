@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux"
+import ProductsList from "../features/products/ProductsList"
 
 function Home() {
-    const products = useSelector((state) => state.products.items)
+    
     return(
         <>
-        <h1>Products Count: {products.length}</h1>
+        <h1>ShopSphere</h1>
+        <ProductsList/>
         </>
     )
 }
