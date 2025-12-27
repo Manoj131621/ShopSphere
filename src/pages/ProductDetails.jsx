@@ -16,7 +16,7 @@ function ProductDetails(){
 
     if(loading) return <Loader />
     if(error) return <p>{error}</p>
-    if(!selectedProduct) return null;
+    if(!selectedProduct) return <p>No Product found</p>;
     return(
         <div className='product-details'>
             <img src={selectedProduct.image} alt={selectedProduct.title}/>
