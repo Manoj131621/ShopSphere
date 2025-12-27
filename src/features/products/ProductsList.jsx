@@ -7,6 +7,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { useDebounce } from "../../hooks/useDebounce";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters";
+import { addToCart } from "../cart/cartSlice";
 
 function ProductsList(){
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ function ProductsList(){
     const [category, setCategory] = useState('')
     const [sort, setSort] = useState('')
 
-    const debouncedSearch = useDebounce(search)
+    const debouncedSearch = useDebounce(search,500)
 
     useEffect(()=> {
         dispatch(getProducts())
@@ -46,9 +47,14 @@ function ProductsList(){
         }
         return products
     },[items, debouncedSearch, category, sort])
-    const handleProductClick = useCallback((id)=>{
-        navigate(`/product/${id}`)
-    },[navigate])
+    // const handleProductClick = useCallback((id)=>{
+    //     navigate(`/product/${id}`)
+    // },[navigate])
+    const handleAddToCart = useCallback(
+        (product)=>{
+            dispatch(addToCart(product))
+        },[dispatch]
+    )
 
     if(loading) return <Loader/>
     if(error) return <p>Error: {error}</p>
@@ -65,7 +71,7 @@ function ProductsList(){
             { filteredProducts.map((product) => (
                 <ProductCard key={product.id}
                 product={product}
-                onClick={()=> navigate(`/product/${product.id}`)} 
+                onAdd={handleAddToCart} 
                 />
             ))}
             
