@@ -5,7 +5,6 @@ function Home() {
     
     return(
         <>
-        <h1>ShopSphere</h1>
         <ProductsList/>
         </>
     )

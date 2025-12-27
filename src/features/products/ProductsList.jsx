@@ -55,10 +55,12 @@ function ProductsList(){
 
     if(loading) return <Loader/>
     if(error) return <p>Error: {error}</p>
-    if(!products.length) return <p>No products found</p>
+    if(!filteredProducts.length) return <p>No products found</p>
     return(
         <>
+        <div className="search-wrapper">
         <SearchBar value={search} onChange={setSearch}/>
+        </div>
         <Filters
         category={category}
         setCategory={setCategory}

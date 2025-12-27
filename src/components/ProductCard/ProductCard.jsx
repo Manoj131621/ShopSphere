@@ -8,14 +8,7 @@ function ProductCard({product, onAdd}){
     const dispatch = useDispatch()
 
     const handleAdd = () =>{
-        dispatch(addToCart(product
-            // {
-            // id: product.id,
-            // title: product.title,
-            // price: product.price,
-            // image: product.image,
-        // }
-    ))
+        dispatch(addToCart(product))
         dispatch(calculateTotals())
     }
     return(
