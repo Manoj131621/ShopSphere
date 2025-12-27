@@ -47,9 +47,6 @@ function ProductsList(){
         }
         return products
     },[items, debouncedSearch, category, sort])
-    // const handleProductClick = useCallback((id)=>{
-    //     navigate(`/product/${id}`)
-    // },[navigate])
     const handleAddToCart = useCallback(
         (product)=>{
             dispatch(addToCart(product))
@@ -58,6 +55,7 @@ function ProductsList(){
 
     if(loading) return <Loader/>
     if(error) return <p>Error: {error}</p>
+    if(!products.length) return <p>No products found</p>
     return(
         <>
         <SearchBar value={search} onChange={setSearch}/>
