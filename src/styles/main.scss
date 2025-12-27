@@ -27,3 +27,19 @@ body {
         align-items: center;
     }
 }
+.cart-page {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    img {
+        width:80px;
+    }
+    button{
+        margin:0 0.25rem
+    }
+}
