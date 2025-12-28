@@ -1,6 +1,7 @@
 import React from "react";
 import './ProductCard.scss'
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { addToCart, calculateTotals, decreaseQty, increaseQty } from "../../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 
@@ -25,7 +26,10 @@ function ProductCard({ product }){
                 !cartItem ? (
                     <button
                     className="add-btn" 
-                    onClick={()=> dispatch(addToCart(product))}>
+                    onClick={()=> {
+                        dispatch(addToCart(product))
+                        toast.success("Added to cart")
+                        }}>
                         Add to Cart
                         </button>
                 ) : (
