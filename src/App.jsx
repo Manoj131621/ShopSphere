@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
+import Navbar from './components/Navbar/Navbar'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
    <>
-   <h2>ShopSphere</h2>
+   <Navbar />
+   <ErrorBoundary>
+   <AppRoutes/>
+   </ErrorBoundary>
    </>
   )
 }
