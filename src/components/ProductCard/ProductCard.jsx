@@ -1,16 +1,14 @@
 import React from "react";
 import './ProductCard.scss'
-import { useDispatch } from "react-redux";
-import { addToCart, calculateTotals } from "../../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, calculateTotals, decreaseQty, increaseQty } from "../../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 
 function ProductCard({ product }){
     const dispatch = useDispatch()
+    const cartItems = useSelector(state => state.cart.items)
+    const cartItem = cartItems.find(item => item.id === product.id)
 
-    const handleAdd = () =>{
-        dispatch(addToCart(product))
-        dispatch(calculateTotals())
-    }
     return(
         <div className="product-card">
             <Link to={`/product/${product.id}`}>
@@ -21,10 +19,24 @@ function ProductCard({ product }){
             />
             <h4 className="product-card__title">{product.title}</h4>
             </Link>
-            
-                <p className="product-card__price">${product.price}</p>
-                <button onClick={handleAdd}>Add to Cart</button>
-            
+            <p className="product-card__price">${product.price}</p>
+            <div className="product-card__actions">
+            {
+                !cartItem ? (
+                    <button
+                    className="add-btn" 
+                    onClick={()=> dispatch(addToCart(product))}>
+                        Add to Cart
+                        </button>
+                ) : (
+                    <div className="qty-controls">
+                        <button onClick={()=> dispatch(decreaseQty(product.id))}>-</button>
+                        <span>{cartItem.quantity}</span>
+                        <button onClick={()=>dispatch(increaseQty(product.id))}>+</button>
+                        </div>
+                )
+            }
+            </div>
         </div>
     )
 }
