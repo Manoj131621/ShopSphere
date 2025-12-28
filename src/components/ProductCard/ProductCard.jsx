@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart, calculateTotals } from "../../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 
-function ProductCard({product, onAdd}){
+function ProductCard({ product }){
     const dispatch = useDispatch()
 
     const handleAdd = () =>{
@@ -23,7 +23,7 @@ function ProductCard({product, onAdd}){
             </Link>
             
                 <p className="product-card__price">${product.price}</p>
-                <button onClick={()=>onAdd(product)}>Add to Cart</button>
+                <button onClick={handleAdd}>Add to Cart</button>
             
         </div>
     )

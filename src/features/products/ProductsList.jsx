@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "./productsThunk";
 import Loader from "../../components/Loader/Loader";
@@ -7,7 +7,6 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { useDebounce } from "../../hooks/useDebounce";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters";
-import { addToCart } from "../cart/cartSlice";
 
 function ProductsList(){
     const dispatch = useDispatch()
@@ -47,11 +46,7 @@ function ProductsList(){
         }
         return products
     },[items, debouncedSearch, category, sort])
-    const handleAddToCart = useCallback(
-        (product)=>{
-            dispatch(addToCart(product))
-        },[dispatch]
-    )
+    
 
     if(loading) return <Loader/>
     if(error) return <p>Error: {error}</p>
@@ -70,8 +65,7 @@ function ProductsList(){
         <div className="products-grid">
             { filteredProducts.map((product) => (
                 <ProductCard key={product.id}
-                product={product}
-                onAdd={handleAddToCart} 
+                product={product} 
                 />
             ))}
             
