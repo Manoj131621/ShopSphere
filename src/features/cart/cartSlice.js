@@ -28,9 +28,11 @@ const cartSlice = createSlice({
             if(item) item.quantity +=1
         },
         decreaseQty(state, action){
-            const item = state.items.find( i => i.id === action.payload)
-            if(item && item.quantity > 1){
-                item.quantity -= 1
+            const itemIndex = state.items.findIndex( i => i.id === action.payload)
+            if(state.items[itemIndex].quantity > 1){
+                state.items[itemIndex].quantity -= 1
+            } else {
+                state.items.splice(itemIndex,1);
             }
         },
         calculateTotals(state){
